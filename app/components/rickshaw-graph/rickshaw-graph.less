@@ -1,0 +1,42 @@
+.sensorGraph {
+	display: block;
+	.legend {
+		width: 100%;
+		ul {
+			text-align: center;
+			li {
+				display: inline-block;
+				a {
+					color: @gray-lighter;
+					text-decoration: none;
+				}
+			}
+		}
+		.fetchResults {
+			color: @gray-light;
+			cursor: pointer;
+			float: left;
+			padding: 0 0 0 @padding-base-horizontal;
+			&.loading {
+				opacity: 0.5;
+				cursor: default;
+			}
+		}
+	}
+	.slider {
+		margin: @padding-base-vertical 0;
+		clear: both;
+	}
+	.detail {
+		.x_label {
+			opacity: 0.8;
+		}
+	}
+	.yAxis {
+		float: left;
+		font-weight: bold;
+	}
+	.chart {
+		float: left;
+	}
+}
