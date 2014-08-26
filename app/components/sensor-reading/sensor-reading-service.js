@@ -1,9 +1,8 @@
 angular.module('sensorReading').service('sensorReadingService', ['$q', 'Restangular', function ($q, Restangular) {
 	'use strict';
-	var sensorReadingService = this;
-	var baseNodes = Restangular.all('getnodes');
-	var baseSensors = Restangular.all('getsensors');
-	var baseSensorValues = Restangular.all('getsensorvalues');
+	var baseNodes = Restangular.all('node');
+	var baseSensors = Restangular.all('sensor');
+	var baseSensorValues = Restangular.all('sensor-value');
 
 	var nodes = {};
 
@@ -66,12 +65,10 @@ angular.module('sensorReading').service('sensorReadingService', ['$q', 'Restangu
 		updateSensorValues: function(node) {
 			var deferred = $q.defer();
 
-			//hard coded for now
-			var from = parseInt(Date.now()/1000) - 60*60*24;
-			var to = parseInt(Date.now()/1000);
-			baseSensorValues.getList({node: node, from: from, to: to}).
+			if (!nodes[node]) {return deferred.reject('Node does not exist')}
+			var sensors = Object.keys(nodes[node].sensors);
+			baseSensorValues.getList({'sensors[]': sensors}).
 				then(function(sensorValues) {
-					var sensorMap = {};
 					var length = sensorValues.length;
 					for (var i = 0; i < length; i++) {
 						var sensorValue = sensorValues[i];

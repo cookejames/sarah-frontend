@@ -15,7 +15,7 @@ angular.module('sarahApp.directives', []);
 angular
 	.module('sensorReading', ['restangular'])
 	.config(['RestangularProvider', function(RestangularProvider){
-		RestangularProvider.setBaseUrl('/api');
+		RestangularProvider.setBaseUrl('http://api.sarah.local');
 		RestangularProvider.setDefaultHttpFields({cache: true});
 		// add a response intereceptor
 		RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
@@ -23,12 +23,17 @@ angular
 			// .. to look for getList operations
 			if (operation === "getList") {
 				// .. and handle the data and meta data
-				extractedData = data._embeded;
-				//extractedData.meta = data.data.meta;
+				extractedData = data._embedded[what];
+				extractedData.meta = {
+					_links: data._links,
+					page_count: data.page_count,
+					page_size: data.page_size,
+					total_items: data.total_items
+				};
 			} else {
-				extractedData = data._embeded;
+				extractedData = data._embedded;
 			}
 			return extractedData;
 		});
 	}]);
-})()
+})();

@@ -1,7 +1,7 @@
 angular.module('sensorReading').controller('sensorReadingController', ['$scope', '$interval', 'sensorReadingService',
 function ($scope, $interval, sensorReadingService) {
 	'use strict';
-	var nodeController = this;
+	var sensorReadingController = this;
 
 	var updateInterval = 60 * 1000; //how often to fetch the sensor values for the active node - every minute
 	var activeNode = null;
@@ -10,12 +10,13 @@ function ($scope, $interval, sensorReadingService) {
 
 	//fetch nodes from the server then fetch the sensors
 	sensorReadingService.updateNodes().then(function(nodes){
+		return sensorReadingService.updateSensors();
+	}).then(function(nodes){
 		//get the first node and set it as active
 		for (var node in nodes) {
-			nodeController.setActive(node);
+			sensorReadingController.setActive(node);
 			break;
 		}
-		return sensorReadingService.updateSensors();
 	});
 
 	/**

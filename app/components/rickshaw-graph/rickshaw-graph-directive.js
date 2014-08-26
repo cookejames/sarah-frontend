@@ -26,7 +26,7 @@ angular.module('rickshawGraph', []).directive('rickshawGraph', function($compile
 					var data = [];
 					angular.forEach(sensor.values, function(value){
 						data.push({
-							x: value.timestamp,
+							x: value.date,
 							y: value.value
 						});
 					});
@@ -146,7 +146,7 @@ angular.module('rickshawGraph', []).directive('rickshawGraph', function($compile
 					element: element
 				} );
 
-				var shelving = new Rickshaw.Graph.Behavior.Series.Toggle( {
+				new Rickshaw.Graph.Behavior.Series.Toggle( {
 					graph: graph,
 					legend: legend
 				} );

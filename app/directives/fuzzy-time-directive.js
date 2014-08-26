@@ -16,21 +16,24 @@ angular.module('sarahApp.directives').directive('fuzzyTime', function() {
 				var seconds = parseInt(Date.now()/1000) - phpTimestamp;
 				var minutes = parseInt(seconds / 60);
 				var hours = parseInt(minutes / 60);
+				var days = parseInt(hours / 24);
 
-				if (phpTimestamp === false) {
+				if (phpTimestamp === false || phpTimestamp === undefined) {
 					return '--';
-				} else if (seconds < 60) {
+				} else if (minutes === 0) {
 					return 'less than a minute';
-				} else if (seconds == 60) {
+				} else if (seconds === 60) {
 					return 'a minute ago';
-				} else if (seconds < 60 * 60) {
+				} else if (hours === 0) {
 					return minutes + ' minutes ago';
-				} else if (seconds == 60 * 60) {
+				} else if (minutes === 60) {
 					return 'an hour ago';
-				} else if (seconds < 60 * 60 * 24) {
+				} else if (days === 0) {
 					return hours + ' hours ago';
+				} else if (days === 1) {
+					return 'a day ago';
 				} else {
-					return 'over a day ago';
+					return days + ' days ago';
 				}
 			};
 
