@@ -73,8 +73,11 @@ angular.module('sensorReading').service('sensorReadingService', ['$q', 'Restangu
 					for (var i = 0; i < length; i++) {
 						var sensorValue = sensorValues[i];
 						if (nodes[node].sensors[sensorValue.sensor] !== undefined) {
-							nodes[node].sensors[sensorValue.sensor].values[sensorValue.id] = sensorValue.plain();
-							nodes[node].sensors[sensorValue.sensor].latest = sensorValue.plain();
+							var sensor = nodes[node].sensors[sensorValue.sensor];
+							sensor.values[sensorValue.id] = sensorValue.plain();
+							if (sensor.latest === undefined || sensor.latest.date < sensorValue.date) {
+								sensor.latest = sensorValue.plain();
+							}
 						}
 
 						deferred.resolve(nodes);
