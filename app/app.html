@@ -42,14 +42,14 @@
 										</div>
 										<div ng-switch="sensor.latest">
 											<div class="value" ng-switch-default>
-												{{sensor.latest.value}}{{sensor.units}}
+												{{sensor.latest.value | number:2}}{{sensor.units}}
 											</div>
 											<div class="value" ng-switch-when="undefined">--</div>
 										</div>
 										<div class="time">
 											<small fuzzy-time timestamp="sensor.latest.date"></small>
 										</div>
-										<div class="progress progress-striped" ng-show="sensor.latest" ng-show="sensor.isRanged">
+										<div class="progress progress-striped" ng-show="sensor.latest && sensor.isRanged">
 											<div class="progress-bar progress-bar-info"
 												 ng-style="{'width': sensorReadingController.percentageValue(sensor) + '%'}"
 												 ng-show="sensor.latest">
