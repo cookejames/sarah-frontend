@@ -1,9 +1,10 @@
-angular.module('sarahApp.directives').directive('fuzzyTime', function() {
+angular.module('sarahApp.directives').directive('fuzzyTime', ['$interval', function($interval) {
 	'use strict';
 	return {
 		restrict: 'AE',
 		scope: {
-			timestamp: '=timestamp'
+			timestamp: '=timestamp',
+			livetimer: '=livetimer'
 		},
 		link: function(scope, element, attrs) {
 			/**
@@ -47,7 +48,17 @@ angular.module('sarahApp.directives').directive('fuzzyTime', function() {
 				}
 			});
 
+			//Add livetimer
+			if (scope.livetimer == true) {
+				var interval = $interval(function(){
+					display();
+				}, 60000);
+				scope.$on('$destroy', function() {
+					$interval.cancel(interval);
+				});
+			}
+
 			display();
 		}
 	};
-});
+}]);
