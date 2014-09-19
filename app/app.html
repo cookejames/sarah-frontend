@@ -42,12 +42,12 @@
 										</div>
 										<div ng-switch="sensor.latest">
 											<div class="value" ng-switch-default>
-												{{sensor.latest.value | number:2}}{{sensor.units}}
+												{{sensor.latest.value | roundedNumber:2}}{{sensor.units}}
 											</div>
 											<div class="value" ng-switch-when="undefined">--</div>
 										</div>
 										<div class="time">
-											<small fuzzy-time timestamp="sensor.latest.date"></small>
+											<small fuzzy-time timestamp="sensor.latest.date" livetimer="true"></small>
 										</div>
 										<div class="progress progress-striped" ng-show="sensor.latest && sensor.isRanged">
 											<div class="progress-bar progress-bar-info"

@@ -15,8 +15,7 @@ angular.module('sarahApp.directives', []);
 angular
 	.module('sensorReading', ['restangular'])
 	.config(['RestangularProvider', function(RestangularProvider){
-		RestangularProvider.setBaseUrl('http://api.sarah.local');
-		RestangularProvider.setDefaultHttpFields({cache: true});
+		RestangularProvider.setBaseUrl('http://api.sarah.aws.cookeit.com');
 		// add a response intereceptor
 		RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
 			var extractedData;
