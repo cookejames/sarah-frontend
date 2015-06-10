@@ -1,0 +1,7 @@
+{
+  "name": "sarahApp.config",
+  "wrap": "(function() {\n'use strict';\n<%= __ngModule %>})();",
+  "constants": {
+    "apiUrl": "http://localhost:3000/api"
+  }
+}

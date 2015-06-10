@@ -1,0 +1,8 @@
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="sensor in sensors_node.sensors">
+        <p>{{sensor.description}}</p>
+        <p>Latest value: {{sensors_node.sensorValues[sensor.id][0].value * sensors_node.sensorValues[sensor.id][0]._embedded.sensor.conversionFactor}}
+            {{sensors_node.sensorValues[sensor.id][0]._embedded.sensor.units}}
+        </p>
+    </li>
+</ul>
