@@ -1,4 +1,4 @@
-angular.module('sensorReading').service('sensorReadingService', ['$q', 'Restangular', function ($q, Restangular) {
+angular.module('sensorReading').service('sensorReadingService', ['$q', 'RestangularSensors', function ($q, Restangular) {
 	'use strict';
 	var baseNodes = Restangular.all('node');
 	var baseSensors = Restangular.all('sensor');
