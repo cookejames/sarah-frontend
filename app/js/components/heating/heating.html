@@ -27,7 +27,19 @@
     </div>
     <div class="col-md-8">
         <ui-view>
-            Select a group from the menu
+            <h2>Status</h2>
+            <div class="row lead">
+                <div class="col-md-6 col-xs-6">
+                    Heating:
+                    <sr-on-off ng-if="heating.heatingStatus !== null" value="heating.heatingStatus"></sr-on-off>
+                    <span ng-if="heating.heatingStatus === null" class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                </div>
+                <div class="col-md-6 col-xs-6">
+                    Water:
+                    <sr-on-off ng-if="heating.waterStatus !== null" value="heating.waterStatus"></sr-on-off>
+                    <span ng-if="heating.waterStatus === null" class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                </div>
+            </div>
         </ui-view>
     </div>
 </div>

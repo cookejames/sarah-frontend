@@ -53,7 +53,13 @@ gulp.task('build_config', function(){
     return gulp.src('config.json')
         .pipe(ngConstant({
             constants: {
-                apiUrl: process.env.API_URL || 'http://localhost:3000/api'
+                apiUrl: process.env.API_URL || 'http://localhost:3000/api',
+                mqttConfig: {
+                    username: 'james@jaynne.co.uk',
+                    password: 'password',
+                    host: process.env.MQTT_HOST || '127.0.0.1',
+                    port: process.env.MQTT_PORT || '9001'
+                }
             }
         })).pipe(gulp.dest('./app/js/components/config'))
 });

@@ -12,6 +12,16 @@
         };
     }
 
+    function onOff() {
+        return {
+            scope: {
+                value: '=value'
+            },
+            template: '<span ng-class="{\'text-success\': value, \'text-danger\': !value}" class="glyphicon glyphicon-off" aria-hidden="true"></span>'
+        };
+    }
+
     angular.module('sarahApp.heating').
-        directive('srCheckBox', checkBox);
+        directive('srCheckBox', checkBox).
+        directive('srOnOff', onOff);
 })();

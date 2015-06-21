@@ -1,12 +1,42 @@
 (function() {
     class HeatingController {
-        constructor(HeatingService, $state, $filter, toastr) {
+        constructor(HeatingService, $state, $filter, toastr, MqttService, $scope) {
             this.HeatingService = HeatingService;
             this.$state = $state;
             this.$filter = $filter;
             this.toastr = toastr;
+            this.MqttService = MqttService;
+            this.$scope = $scope;
+            this.setupMqtt();
             this.getGroups();
             this.groupEditting = null;
+            this.waterStatus = null;
+            this.heatingStatus = null;
+        }
+
+        setupMqtt() {
+            this.MqttService.connect().then(() => {
+                this.MqttService.addSubscriber((message) => {
+                    this.$scope.$apply(() => {
+                        this.mqttReceived(message)
+                    });
+                });
+                this.MqttService.subscribe('water/status');
+                this.MqttService.subscribe('heating/status');
+                this.MqttService.publish('water/status/request', '');
+                this.MqttService.publish('heating/status/request', '');
+            });
+        }
+
+        mqttReceived(message) {
+            switch (message.destinationName) {
+                case 'water/status':
+                    this.waterStatus = (message.payloadString === 'on') ? true : false;
+                    break;
+                case 'heating/status':
+                    this.heatingStatus = (message.payloadString === 'on') ? true : false;
+                    break;
+            }
         }
 
         /**
@@ -117,7 +147,7 @@
             });
     }
 
-    angular.module('sarahApp.heating', ['ui.router', 'lbServices']).config(routerConfig);
+    angular.module('sarahApp.heating', ['ui.router', 'lbServices', 'sarahApp.mqtt']).config(routerConfig);
     register('sarahApp.heating').
         controller('HeatingController', HeatingController);
 })();
