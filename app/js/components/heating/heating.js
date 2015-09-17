@@ -9,6 +9,15 @@
             this.$scope = $scope;
             this.setupMqtt();
             this.getGroups();
+            this.getBoostStatus();
+            this.boostStatus = {
+                heating: 0,
+                water: 0
+            };
+            this.boostTime = {
+                heating: 15,
+                water: 15
+            }
             this.groupEditting = null;
             this.waterStatus = null;
             this.heatingStatus = null;
@@ -45,6 +54,38 @@
         getGroups() {
             this.HeatingService.getGroups().then((data) => {
                 this.groups = this.$filter('orderBy')(data, 'name');
+            });
+        }
+
+        /**
+         * Get the boost status and assign it to the local
+         */
+        getBoostStatus() {
+            this.HeatingService.getBoostStatus().then((data) => {
+                this.boostStatus = data;
+                //Add the current time to heating/water to get the end time
+                this.boostStatus.heating += new Date().getTime();
+                this.boostStatus.water += new Date().getTime();
+            });
+        }
+
+        /**
+         * Boost the heating
+         */
+        boostHeating() {
+            this.HeatingService.boostHeating(this.boostTime.heating).then((times) => {
+                this.getBoostStatus();
+                this.boostTime.heating = 15;
+            });
+        }
+
+        /**
+         * Boost the water
+         */
+        boostWater() {
+            this.HeatingService.boostWater(this.boostTime.water).then((times) => {
+                this.getBoostStatus();
+                this.boostTime.water = 15;
             });
         }
 

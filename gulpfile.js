@@ -7,7 +7,9 @@ var gulp = require('gulp'),
     plumber = require('gulp-plumber'),
     del = require('del'),
     runSequence = require('run-sequence'),
-    ngConstant = require('gulp-ng-constant');
+    ngConstant = require('gulp-ng-constant'),
+    sass = require('gulp-sass'),
+    concat = require('gulp-concat');
 
 gulp.task('clean', function (cb) {
     del(['dist/**/*'], cb);
@@ -49,6 +51,13 @@ gulp.task('traceur', ['build_config'], function() {
         .pipe(livereload());
 });
 
+gulp.task('copy_css', function () {
+    gulp.src('app/**/*.scss')
+        .pipe(sass())
+        .pipe(concat('app.css'))
+        .pipe(gulp.dest('dist'));
+});
+
 gulp.task('build_config', function(){
     return gulp.src('config.json')
         .pipe(ngConstant({
@@ -70,6 +79,10 @@ gulp.task('watch', function () {
         gulp.start('traceur');
     });
 
+    watch('./app/**/*.scss', function () {
+        gulp.start('copy_css');
+    });
+
     watch('./app/**/*.html', function () {
         gulp.start('copy_html');
     });
@@ -80,6 +93,6 @@ gulp.task('watch', function () {
 });
 
 gulp.task('default', function(cb){
-    runSequence('clean', ['traceur', 'copy_bower_libs', 'copy_html', 'copy_traceur_runtime', 'copy_libs']);
+    runSequence('clean', ['traceur', 'copy_bower_libs', 'copy_html', 'copy_traceur_runtime', 'copy_libs', 'copy_css']);
     cb();
 });

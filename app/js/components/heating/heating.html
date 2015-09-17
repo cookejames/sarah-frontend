@@ -27,19 +27,36 @@
     </div>
     <div class="col-md-8">
         <ui-view>
-            <h2>Status</h2>
+            <div class="col-md-12 text-center">
+                <h2>Status</h2>
+            </div>
             <div class="row lead">
-                <div class="col-md-6 col-xs-6">
-                    Heating:
-                    <sr-on-off ng-if="heating.heatingStatus !== null" value="heating.heatingStatus"></sr-on-off>
+                <div class="col-md-6 col-xs-6 text-center">
+                    <sr-on-off ng-if="heating.heatingStatus !== null" value="heating.heatingStatus" label="'heating'"></sr-on-off>
                     <span ng-if="heating.heatingStatus === null" class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
                 </div>
-                <div class="col-md-6 col-xs-6">
-                    Water:
-                    <sr-on-off ng-if="heating.waterStatus !== null" value="heating.waterStatus"></sr-on-off>
+                <div class="col-md-6 col-xs-6 text-center">
+                    <sr-on-off ng-if="heating.waterStatus !== null" value="heating.waterStatus" label="'water'"></sr-on-off>
                     <span ng-if="heating.waterStatus === null" class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
                 </div>
             </div>
+            <div class="col-md-6 col-xs-6 text-center">
+                Boost: <sr-boost-time-display time="heating.boostStatus.heating"></sr-boost-time-display> <br>
+                <button class="btn btn-default btn-sm" >
+                    <span ng-show="!heatingToggle" ng-click="heatingToggle = !heatingToggle">{{heating.boostTime.heating}}</span>
+                    <input type="number" min="0" max="180" ng-model="heating.boostTime.heating" ng-show="heatingToggle" />
+                </button>
+                <button class="btn btn-default btn-sm" ng-click="heatingToggle = !heatingToggle; heating.boostHeating()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+            </div>
+            <div class="col-md-6 col-xs-6 text-center">
+                Boost: <sr-boost-time-display time="heating.boostStatus.water"></sr-boost-time-display> <br>
+                <button class="btn btn-default btn-sm" >
+                    <span ng-show="!waterToggle" ng-click="waterToggle = !waterToggle">{{heating.boostTime.water}}</span>
+                    <input type="number" min="0" max="180" ng-model="heating.boostTime.water" ng-show="waterToggle" />
+                </button>
+                <button class="btn btn-default btn-sm" ng-click="waterToggle = !waterToggle; heating.boostWater()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+            </div>
+    </div>
         </ui-view>
     </div>
 </div>

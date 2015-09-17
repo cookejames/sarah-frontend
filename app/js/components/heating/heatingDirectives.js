@@ -15,13 +15,39 @@
     function onOff() {
         return {
             scope: {
-                value: '=value'
+                value: '=value',
+                label: '=label'
             },
-            template: '<span ng-class="{\'text-success\': value, \'text-danger\': !value}" class="glyphicon glyphicon-off" aria-hidden="true"></span>'
+            templateUrl: '/js/components/heating/heatingOnOffDirective.html'
+
+        };
+    }
+
+    function boostTimeDisplay($interval) {
+        return {
+            template:
+                '<span ng-if="remaining > 0">{{remaining}} minutes</span>' +
+                '<span ng-if="remaining <= 0">off</span>', 
+            scope: {
+                time: '='
+            },
+            link: function($scope) {
+                var interval;
+                $scope.$watch('time', function(){
+                    interval = $interval(function(){
+                        $scope.remaining = $scope.time - new Date().getTime();
+                        $scope.remaining = parseInt($scope.remaining / 1000 / 60); //convert ms to mins
+                    }, 1000);
+                });
+                $scope.$on('$destroy',function() {
+                    $interval.cancel(interval);
+                });
+            }
         };
     }
 
     angular.module('sarahApp.heating').
         directive('srCheckBox', checkBox).
-        directive('srOnOff', onOff);
+        directive('srOnOff', onOff)
+        .directive('srBoostTimeDisplay', boostTimeDisplay);
 })();

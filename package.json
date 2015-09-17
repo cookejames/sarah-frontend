@@ -16,14 +16,15 @@
     "gulp-traceur": "~0.17.0",
     "traceur": "0.0.87",
     "gulp-sourcemaps": "~1.5.1",
-    "gulp-concat": "~2.5.2",
+    "gulp-concat": "~2.6.0",
     "gulp": "~3.9.0",
     "gulp-watch": "~4.2.3",
     "gulp-livereload": "~3.8.0",
     "gulp-plumber": "~1.0.0",
     "del": "~1.2.0",
     "run-sequence": "~1.1.0",
-    "gulp-ng-constant": "~0.3.0"
+    "gulp-ng-constant": "~0.3.0",
+    "gulp-sass": "~2.0.4"
   },
   "scripts": {
     "postinstall": "bower install && gulp",

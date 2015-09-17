@@ -1,7 +1,8 @@
 class HeatingService {
     /*@ngInject*/
-    constructor(HeatingGroup) {
+    constructor(HeatingGroup, Boost) {
         this.heatingGroupModel = HeatingGroup;
+        this.boostModel = Boost;
     }
 
     getGroups() {
@@ -41,6 +42,18 @@ class HeatingService {
 
     deleteSchedule(groupId, id) {
         return this.heatingGroupModel.prototype$__destroyById__schedules({id: groupId, fk: id}).$promise;
+    }
+
+    getBoostStatus() {
+        return this.boostModel.status().$promise;
+    }
+
+    boostHeating(time) {
+        return this.boostModel.boostHeating({time: time}).$promise;
+    }
+
+    boostWater(time) {
+        return this.boostModel.boostWater({time: time}).$promise;
     }
 }
 register('sarahApp.heating').
