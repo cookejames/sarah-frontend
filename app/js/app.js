@@ -17,8 +17,9 @@
     function SarahAppController() {
     }
 
-    function routerConfig($stateProvider, $urlRouterProvider) {
+    function routerConfig($locationProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise("/heating");
+        $locationProvider.html5Mode(true);
     }
 
     function loopBackConfig(LoopBackResourceProvider, apiUrl) {
