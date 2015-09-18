@@ -42,19 +42,27 @@
             </div>
             <div class="col-md-6 col-xs-6 text-center">
                 Boost: <sr-boost-time-display time="heating.boostStatus.heating"></sr-boost-time-display> <br>
-                <button class="btn btn-default btn-sm" >
-                    <span ng-show="!heatingToggle" ng-click="heatingToggle = !heatingToggle">{{heating.boostTime.heating}}</span>
-                    <input type="number" min="0" max="180" ng-model="heating.boostTime.heating" ng-show="heatingToggle" />
-                </button>
-                <button class="btn btn-default btn-sm" ng-click="heatingToggle = !heatingToggle; heating.boostHeating()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                <div class="btn-group" role="group">
+                    <button class="btn btn-default" ng-click="showHeatingBoost = true" off-click="showHeatingBoost = false">
+                        <span ng-show="!showHeatingBoost">{{heating.boostTime.heating}}</span>
+                        <select ng-model="heating.boostTime.heating" ng-options="i for i in heating.maxBoostMinutes" ng-show="showHeatingBoost"></select>
+                    </button>
+                    <button class="btn btn-default" ng-click="heating.boostHeating()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
+                </div>
             </div>
             <div class="col-md-6 col-xs-6 text-center">
                 Boost: <sr-boost-time-display time="heating.boostStatus.water"></sr-boost-time-display> <br>
-                <button class="btn btn-default btn-sm" >
-                    <span ng-show="!waterToggle" ng-click="waterToggle = !waterToggle">{{heating.boostTime.water}}</span>
-                    <input type="number" min="0" max="180" ng-model="heating.boostTime.water" ng-show="waterToggle" />
-                </button>
-                <button class="btn btn-default btn-sm" ng-click="waterToggle = !waterToggle; heating.boostWater()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                <div class="btn-group" role="group">
+                    <button class="btn btn-default" ng-click="showWaterBoost = true" off-click="showWaterBoost = false">
+                        <span ng-show="!showWaterBoost" ng-click="waterToggle = !waterToggle">{{heating.boostTime.water}}</span>
+                        <select ng-model="heating.boostTime.water" ng-options="i for i in heating.maxBoostMinutes" ng-show="showWaterBoost"></select>
+                    </button>
+                    <button class="btn btn-default" ng-click="heating.boostWater()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
+                </div>
             </div>
     </div>
         </ui-view>

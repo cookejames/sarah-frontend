@@ -12,6 +12,7 @@
     "lodash": "~3.6.0",
     "angular-ui-router": "~0.2.15",
     "angular-toastr": "~1.4.1",
-    "paho-mqtt-js": "~1.0.1"
+    "paho-mqtt-js": "~1.0.1",
+    "angular-off-click": "~0.0.8"
   }
 }

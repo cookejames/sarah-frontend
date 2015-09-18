@@ -17,7 +17,8 @@
             this.boostTime = {
                 heating: 15,
                 water: 15
-            }
+            };
+            this.maxBoostMinutes = Array.from(Array(181).keys()); //The maximum number of minutes to boost for
             this.groupEditting = null;
             this.waterStatus = null;
             this.heatingStatus = null;
@@ -188,7 +189,7 @@
             });
     }
 
-    angular.module('sarahApp.heating', ['ui.router', 'lbServices', 'sarahApp.mqtt']).config(routerConfig);
+    angular.module('sarahApp.heating', ['ui.router', 'lbServices', 'sarahApp.mqtt', 'offClick']).config(routerConfig);
     register('sarahApp.heating').
         controller('HeatingController', HeatingController);
 })();
