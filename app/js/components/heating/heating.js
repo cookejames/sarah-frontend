@@ -15,8 +15,8 @@
                 water: 0
             };
             this.boostTime = {
-                heating: 15,
-                water: 15
+                heating: 0,
+                water: 0
             };
             this.maxBoostMinutes = Array.from(Array(181).keys()); //The maximum number of minutes to boost for
             this.groupEditting = null;
@@ -74,9 +74,12 @@
          * Boost the heating
          */
         boostHeating() {
+            if (this.boostTime.heating === 0) {
+                return;
+            }
             this.HeatingService.boostHeating(this.boostTime.heating).then((times) => {
                 this.getBoostStatus();
-                this.boostTime.heating = 15;
+                this.boostTime.heating = 0;
             });
         }
 
@@ -84,9 +87,12 @@
          * Boost the water
          */
         boostWater() {
+            if (this.boostTime.water === 0) {
+                return;
+            }
             this.HeatingService.boostWater(this.boostTime.water).then((times) => {
                 this.getBoostStatus();
-                this.boostTime.water = 15;
+                this.boostTime.water = 0;
             });
         }
 
