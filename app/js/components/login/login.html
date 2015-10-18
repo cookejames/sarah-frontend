@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3 jumbotron">
+        <h2>Sarah says hi...</h2>
+        <form name="form" novalidate>
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email" ng-model="login.email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" ng-model="login.password" required>
+            </div>
+            <p ng-if="login.errorMessage" class="text-danger">{{login.errorMessage}}</p>
+            <button type="submit" class="btn btn-primary" ng-click="login.login()" ng-disabled="form.$invalid || login.isLoggingIn">Login</button>
+        </form>
+    </div>
+</div>

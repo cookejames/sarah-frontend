@@ -4,8 +4,7 @@
     angular.module('sarahApp', [
         'sarahApp.heating',
         'sarahApp.heating.group',
-        'sarahApp.sensors',
-        'sarahApp.sensors.node',
+        'sarahApp.login',
         'sarahApp.filters',
         'sarahApp.config',
         'ui.router'

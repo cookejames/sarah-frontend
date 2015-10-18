@@ -122,7 +122,7 @@
             });
     }
 
-    angular.module('sarahApp.heating.group', ['ui.router', 'lbServices', 'toastr']).config(routerConfig);
+    angular.module('sarahApp.heating.group', ['ui.router', 'lbServices', 'toastr', 'sarahApp.heating']).config(routerConfig);
     register('sarahApp.heating.group').
         controller('HeatingGroupController', HeatingGroupController);
 })();
