@@ -1,9 +1,10 @@
 (function() {
     class MqttService {
         /*@ngInject*/
-        constructor(mqttConfig, $q) {
+        constructor(mqttConfig, $q, LoopBackAuth) {
             this.mqttConfig = mqttConfig;
             this.$q = $q;
+            this.LoopBackAuth = LoopBackAuth;
             var clientId = 'sarah-frontend-' + new Date().getTime();
             this.client = new Paho.MQTT.Client(mqttConfig.host, parseInt(mqttConfig.port), clientId);
             this.subscribers = [];
@@ -18,8 +19,8 @@
 
             return this.$q((resolve) => {
                 this.client.connect({
-                    userName: this.mqttConfig.username,
-                    password: this.mqttConfig.password,
+                    userName: this.LoopBackAuth.currentUserId,
+                    password: 'Bearer ' + this.LoopBackAuth.accessTokenId,
                     onSuccess: () => {
                         this.connected = true;
                         this.client.onMessageArrived = (message) => {

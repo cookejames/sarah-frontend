@@ -64,8 +64,6 @@ gulp.task('build_config', function(){
             constants: {
                 apiUrl: process.env.API_URL || 'http://localhost:3000/api',
                 mqttConfig: {
-                    username: 'james@jaynne.co.uk',
-                    password: 'password',
                     host: process.env.MQTT_HOST || '127.0.0.1',
                     port: process.env.MQTT_PORT || '9001'
                 }
