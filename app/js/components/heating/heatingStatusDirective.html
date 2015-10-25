@@ -13,6 +13,11 @@
             <select ng-model="boostTime[type]" ng-change="showBoost = false" ng-options="i for i in maxBoostMinutes" ng-show="showBoost"></select>
         </button>
     </div>
+    <div class="btn-group" role="group" ng-if="boostTime[type] > 0 || boostStatus[type] > boostStatus.time">
+        <button class="btn btn-default" ng-click="cancelBoost()">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+    </div>
     <div class="btn-group" role="group">
         <button class="btn btn-default" ng-click="boostFunction()">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>

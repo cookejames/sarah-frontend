@@ -55,6 +55,14 @@ class HeatingService {
     boostWater(time) {
         return this.boostModel.boostWater({time: time}).$promise;
     }
+
+    cancelBoostHeating() {
+        return this.boostModel.cancelHeating().$promise;
+    }
+
+    cancelBoostWater() {
+        return this.boostModel.cancelWater().$promise;
+    }
 }
 register('sarahApp.heating').
     service('HeatingService', HeatingService);

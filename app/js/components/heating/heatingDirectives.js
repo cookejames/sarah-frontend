@@ -57,8 +57,10 @@
             HeatingService.getBoostStatus().then((data) => {
                 boostStatus = angular.extend(boostStatus, data);
                 //Add the current time to heating/water to get the end time
-                boostStatus.heating += new Date().getTime();
-                boostStatus.water += new Date().getTime();
+                var time = new Date().getTime();
+                boostStatus.heating += time;
+                boostStatus.water += time;
+                boostStatus.time = time;
             });
         };
 
@@ -75,6 +77,13 @@
             });
         };
 
+        var cancelBoostHeating = function() {
+            HeatingService.cancelBoostHeating().then(function(){
+                boostTime.heating = 0;
+                boostStatus.heating = 0;
+            });
+        };
+
         /**
          * Boost the water
          */
@@ -85,6 +94,13 @@
             HeatingService.boostWater(boostTime.water).then((times) => {
                 getBoostStatus();
                 boostTime.water = 0;
+            });
+        };
+
+        var cancelBoostWater = function() {
+            HeatingService.cancelBoostWater().then(function(){
+                boostTime.water = 0;
+                boostStatus.water = 0;
             });
         };
 
@@ -102,10 +118,12 @@
                     case 'heating':
                         $scope.label = 'Heating';
                         $scope.boostFunction = boostHeating;
+                        $scope.cancelBoost = cancelBoostHeating;
                         break;
                     case 'water':
                         $scope.label = 'Water';
                         $scope.boostFunction = boostWater;
+                        $scope.cancelBoost = cancelBoostWater;
                         break;
                 }
 
