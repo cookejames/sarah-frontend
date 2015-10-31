@@ -67,3 +67,17 @@
     </li>
 </ul>
 <button ng-if="!heatingGroup.isEditting()" class="btn btn-default" ng-click="heatingGroup.addNewSchedule()">Add <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+<div class="row">
+    <div class="col-md-12 col-xs-12">
+        <h3>Holiday Times</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-11 col-xs-11">
+        <sr-date-time-picker class="row" label="From" ng-model="heatingGroup.group.holidayFrom"></sr-date-time-picker>
+        <sr-date-time-picker class="row" label="To" ng-model="heatingGroup.group.holidayTo"></sr-date-time-picker>
+    </div>
+    <div class="col-md-1 col-xs-1">
+        <button ng-click="heatingGroup.saveGroup()" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-save" aria-hidden="true"></span></button>
+    </div>
+</div>

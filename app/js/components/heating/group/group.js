@@ -112,6 +112,20 @@
             });
             this.editSchedule(length, true);
         }
+
+        /**
+         * Save a group
+         * @param index
+         * @param markNotEditting
+         * @returns {boolean}
+         */
+        saveGroup() {
+            //save the group then update the groups list to get the new group id
+            this.HeatingService.saveGroup(this.group)
+                .catch(function(){
+                    console.log('save failed');
+                });
+        }
     }
 
     function routerConfig($stateProvider) {

@@ -1,0 +1,14 @@
+<div>
+    <div class="col-md-3 col-xs-2">{{label}}:</div>
+    <div class="col-md-6 col-xs-7">
+        <p class="input-group">
+            <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="date" is-open="dateOpen" starting-day="1" min-date="minDate"/>
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="dateOpen = true"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+        </p>
+    </div>
+    <div class="col-md-3 col-xs-3">
+        <uib-timepicker ng-model="date" show-spinners="false" show-meridian="false"></uib-timepicker>
+    </div>
+</div>

@@ -38,7 +38,34 @@
             templateUrl: '/js/components/heating/group/timeEditor.tpl.html'
         };
     }
+
+    function dateTimePicker() {
+        return {
+            scope: {
+                label: '@'
+            },
+            require: 'ngModel',
+            templateUrl: '/js/components/heating/group/dateTimePicker.tpl.html',
+            link: function(scope, element, attributes, ngModelCtrl) {
+                scope.minDate = new Date();
+
+                ngModelCtrl.$render = function() {
+                    if (ngModelCtrl.$modelValue) {
+                        scope.date = new Date(ngModelCtrl.$modelValue);
+                    } else {
+                        scope.date = new Date();
+                    }
+                };
+                scope.$watch('date', function(newValue){
+                    var timestamp = newValue ? newValue.getTime() : null;
+                    ngModelCtrl.$setViewValue(timestamp);
+                });
+            }
+        };
+    }
+
     angular.module('sarahApp.heating.group').
         directive('srTickBox', tickBox).
-        directive('srTimeEditor', timeEditor);
+        directive('srTimeEditor', timeEditor).
+        directive('srDateTimePicker', dateTimePicker);
 })();

@@ -7,7 +7,8 @@
         'sarahApp.login',
         'sarahApp.filters',
         'sarahApp.config',
-        'ui.router'
+        'ui.router',
+        'ui.bootstrap'
     ]).controller('SarahAppController', SarahAppController).
     config(routerConfig).
     config(loopBackConfig).

@@ -4,15 +4,16 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "angular": "~1.4.0",
-    "angular-resource": "~1.4.0",
-    "angular-mocks": "~1.4.0",
-    "bootstrap": "~3.0",
-    "restangular": "~1.5.0",
-    "lodash": "~3.6.0",
-    "angular-ui-router": "~0.2.15",
-    "angular-toastr": "~1.4.1",
-    "paho-mqtt-js": "~1.0.1",
-    "angular-off-click": "~0.0.8"
+    "angular": "^1.4.0",
+    "angular-bootstrap": "^0.14.3",
+    "angular-mocks": "^1.4.0",
+    "angular-off-click": "^0.0.8",
+    "angular-resource": "^1.4.0",
+    "angular-toastr": "^1.4.1",
+    "angular-ui-router": "^0.2.15",
+    "bootstrap": "^3.0",
+    "lodash": "^3.6.0",
+    "paho-mqtt-js": "^1.0.1",
+    "restangular": "^1.5.0"
   }
 }
