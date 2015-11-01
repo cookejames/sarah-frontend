@@ -42,7 +42,8 @@
     function dateTimePicker() {
         return {
             scope: {
-                label: '@'
+                label: '@',
+                enabledEdit: '='
             },
             require: 'ngModel',
             templateUrl: '/js/components/heating/group/dateTimePicker.tpl.html',
