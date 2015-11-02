@@ -4,11 +4,11 @@
     angular.module('sarahApp', [
         'sarahApp.heating',
         'sarahApp.heating.group',
+        'sarahApp.sensors',
         'sarahApp.login',
         'sarahApp.filters',
         'sarahApp.config',
-        'ui.router',
-        'ui.bootstrap'
+        'ui.router'
     ]).controller('SarahAppController', SarahAppController).
     config(routerConfig).
     config(loopBackConfig).

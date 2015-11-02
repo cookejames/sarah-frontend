@@ -12,8 +12,11 @@
     "angular-toastr": "^1.4.1",
     "angular-ui-router": "^0.2.15",
     "bootstrap": "^3.0",
-    "lodash": "^3.6.0",
     "paho-mqtt-js": "^1.0.1",
-    "restangular": "^1.5.0"
+    "angularjs-nvd3-directives": "~0.0.7"
+  },
+  "resolutions": {
+    "angular": "^1.4.0",
+    "d3": "~3.4.1"
   }
 }
