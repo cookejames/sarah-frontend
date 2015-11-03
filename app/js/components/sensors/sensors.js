@@ -6,11 +6,19 @@
             this.getSensors();
 
             this.xFormat = function(){
-                return function(d){
-                    var v = d3.time.format('%d/%m/%y %H:%M')(new Date(d));
-                    return v;
-                }
-            }
+                return function(x){
+                    return d3.time.format('%d/%m/%y %H:%M')(new Date(x));
+                };
+            };
+            this.yFormat = function() {
+                return function(y) {
+                    if (typeof y === 'boolean') {
+                        return y ? 1 : 0;
+                    } else {
+                        return y;
+                    }
+                };
+            };
         }
 
         getSensors() {
@@ -23,7 +31,7 @@
                     this.chartData.push({
                         key: sensor.name,
                         values: sensor.readings.map(function(reading){
-                            return [reading.time, reading.numberValue];
+                            return [reading.time, reading.numberValue || reading.booleanValue || reading.stringValue];
                         })
                     });
                 });
