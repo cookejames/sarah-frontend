@@ -10,15 +10,6 @@
                     return d3.time.format('%d/%m/%y %H:%M')(new Date(x));
                 };
             };
-            this.yFormat = function() {
-                return function(y) {
-                    if (typeof y === 'boolean') {
-                        return y ? 1 : 0;
-                    } else {
-                        return y;
-                    }
-                };
-            };
         }
 
         getSensors() {
@@ -31,7 +22,17 @@
                     this.chartData.push({
                         key: sensor.name,
                         values: sensor.readings.map(function(reading){
-                            return [reading.time, reading.numberValue || reading.booleanValue || reading.stringValue];
+                            switch (sensor.type) {
+                                case 'boolean':
+                                    var value = reading.booleanValue ? 1 : 0;
+                                    break;
+                                case 'float':
+                                    var value = reading.numberValue;
+                                    break;
+                                default:
+                                    var value = reading.stringValue;
+                            }
+                            return [reading.time, value];
                         })
                     });
                 });
