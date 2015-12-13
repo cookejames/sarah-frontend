@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-6 col-sm-12" ng-repeat="switch in vm.switches">
+    <div class="col-md-6 col-sm-12" ng-repeat="switch in vm.switches | orderBy:'name'">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <strong>{{switch.name}}</strong>
