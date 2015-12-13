@@ -8,8 +8,10 @@ var gulp = require('gulp'),
     del = require('del'),
     runSequence = require('run-sequence'),
     ngConstant = require('gulp-ng-constant'),
-    sass = require('gulp-sass'),
-    concat = require('gulp-concat');
+    less = require('gulp-less'),
+    concat = require('gulp-concat'),
+    postcss = require('gulp-postcss'),
+    autoprefixer = require('autoprefixer');
 
 gulp.task('clean', function (cb) {
     del(['dist/**/*'], cb);
@@ -52,10 +54,12 @@ gulp.task('traceur', ['build_config'], function() {
 });
 
 gulp.task('copy_css', function () {
-    gulp.src('app/**/*.scss')
-        .pipe(sass())
+    gulp.src(['app/**/*.less'])
+        .pipe(less())
+        .pipe(postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
         .pipe(concat('app.css'))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist'))
+        .pipe(livereload());
 });
 
 gulp.task('build_config', function(){
@@ -77,7 +81,7 @@ gulp.task('watch', function () {
         gulp.start('traceur');
     });
 
-    watch('./app/**/*.scss', function () {
+    watch('./app/**/*.less', function () {
         gulp.start('copy_css');
     });
 

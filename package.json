@@ -23,8 +23,10 @@
     "del": "~1.2.0",
     "run-sequence": "~1.1.0",
     "gulp-ng-constant": "~0.3.0",
-    "gulp-sass": "~2.0.4",
-    "superstatic": "~1.2.3"
+    "superstatic": "~1.2.3",
+    "gulp-less": "~3.0.5",
+    "autoprefixer": "~6.1.2",
+    "gulp-postcss": "~6.0.1"
   },
   "scripts": {
     "postinstall": "bower install && gulp",
