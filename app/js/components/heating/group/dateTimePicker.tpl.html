@@ -1,6 +1,6 @@
 <div>
     <div class="col-md-3 col-xs-2">{{label}}:</div>
-    <div class="col-md-6 col-xs-7">
+    <div class="col-md-6 col-xs-8">
         <p ng-if="enabledEdit" class="input-group">
             <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="date" is-open="dateOpen" starting-day="1" min-date="minDate"/>
                 <span class="input-group-btn">
@@ -9,7 +9,7 @@
         </p>
         <p ng-if="!enabledEdit">{{date | date : 'd MMM y h:mm:ss a'}}</p>
     </div>
-    <div class="col-md-3 col-xs-3">
+    <div class="col-md-3 col-xs-2">
         <uib-timepicker ng-if="enabledEdit" ng-model="date" show-spinners="false" show-meridian="false"></uib-timepicker>
     </div>
 </div>
