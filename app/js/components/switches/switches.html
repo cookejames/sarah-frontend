@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-md-6 col-sm-12" ng-repeat="switch in vm.switches">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>{{switch.name}}</strong>
+            </div>
+            <div class="panel-body">
+                <div class="btn-group btn-group-lg btn-group-justified" role="group">
+                    <a class="btn btn-primary" type="submit" ng-click="vm.sendCommand(switch.onCommand)" role="button">On</a>
+                    <a class="btn btn-danger" type="submit" ng-click="vm.sendCommand(switch.offCommand)" role="button">Off</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

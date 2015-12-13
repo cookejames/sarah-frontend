@@ -5,6 +5,7 @@
         'sarahApp.heating',
         'sarahApp.heating.group',
         'sarahApp.sensors',
+        'sarahApp.switches',
         'sarahApp.login',
         'sarahApp.filters',
         'sarahApp.config',
