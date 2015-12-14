@@ -1,11 +1,9 @@
 (function() {
     class SwitchesController {
-        constructor(SwitchesService, MqttService, toastr) {
+        constructor(SwitchesService, toastr) {
             this.SwitchesService = SwitchesService;
-            this.MqttService = MqttService;
             this.toastr = toastr;
 
-            this.MqttService.connect();
             this.getSwitches();
         }
 
@@ -15,9 +13,20 @@
             });
         }
 
-        sendCommand(command) {
-            this.MqttService.publish('switches', '' + command);
-            this.toastr.success('Command sent');
+        sendOn(id) {
+            this.SwitchesService.sendOn(id).then(() => {
+                this.toastr.success('Command sent');
+            }).catch(() => {
+                this.toastr.error('Whoops something went wrong');
+            });
+        }
+
+        sendOff(id) {
+            this.SwitchesService.sendOff(id).then(() => {
+                this.toastr.success('Command sent');
+            }).catch(() => {
+                this.toastr.error('Whoops something went wrong');
+            });
         }
     }
 
