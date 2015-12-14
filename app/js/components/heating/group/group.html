@@ -1,4 +1,4 @@
-<h2>{{heatingGroup.group.name}}</h2>
+<p class="lead">{{heatingGroup.group.name}}</p>
 <div ng-if="heatingGroup.schedules.length === 0">
     This group has no schedules yet
 </div>
@@ -69,7 +69,7 @@
 <button ng-if="!heatingGroup.isEditting()" class="btn btn-default" ng-click="heatingGroup.addNewSchedule()">Add <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
 <div class="row">
     <div class="col-md-12 col-xs-12">
-        <h3>Holiday Times</h3>
+        <h3><small>Holiday Times</small></h3>
     </div>
 </div>
 <div class="row">

@@ -12,25 +12,39 @@
     <base href="/">
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="header">
-            <ul class="nav nav-pills pull-right">
-                <li><a ui-sref="heating">Heating</a></li>
-                <li><a ui-sref="sensors">Sensors</a></li>
-                <li><a ui-sref="switches">Switches</a></li>
-                <li><a ui-sref="logout">Logout</a></li>
-            </ul>
-            <h3 class="text-muted">Sarah</h3>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Sarah</a>
+            </div>
+
+            <div class="collapse navbar-collapse" uib-collapse="isCollapsed">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a ui-sref="heating">Heating</a></li>
+                    <li><a ui-sref="sensors">Sensors</a></li>
+                    <li><a ui-sref="switches">Switches</a></li>
+                    <li><a ui-sref="logout">Logout</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="content">
+    </nav>
+    <section>
+        <div class="container-fluid">
             <ui-view></ui-view>
         </div>
-    </div>
+    </section>
 
     <script src="/lib/angular/angular.min.js"></script>
     <script src="/lib/angular-resource/angular-resource.min.js"></script>
     <script src="/lib/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="/lib/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+    <script src="/lib/angular-animate/angular-animate.min.js"></script>
     <script src="/lib/angular-bootstrap/ui-bootstrap.min.js"></script>
     <script src="/lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="/lib/angular-off-click/offClick.js"></script>

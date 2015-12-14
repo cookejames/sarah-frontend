@@ -13,7 +13,8 @@
     "angular-ui-router": "^0.2.15",
     "bootstrap": "^3.0",
     "paho-mqtt-js": "^1.0.1",
-    "angularjs-nvd3-directives": "~0.0.7"
+    "angularjs-nvd3-directives": "~0.0.7",
+    "angular-animate": "~1.4.8"
   },
   "resolutions": {
     "angular": "^1.4.0",

@@ -9,7 +9,8 @@
         'sarahApp.login',
         'sarahApp.filters',
         'sarahApp.config',
-        'ui.router'
+        'ui.router',
+        'ngAnimate'
     ]).controller('SarahAppController', SarahAppController).
     config(routerConfig).
     config(loopBackConfig).
