@@ -19,8 +19,6 @@
                 this.sensors = this.$filter('orderBy')(data, 'name');
                 this.chartData = [];
                 this.sensors.forEach((sensor) => {
-                    //Used to smooth out the graph by averaging the last 5 readings
-                    var avg = [undefined, undefined, undefined, undefined, undefined];
                     this.chartData.push({
                         key: sensor.name,
                         values: sensor.readings.map(function(reading){
@@ -29,19 +27,7 @@
                                     var value = reading.booleanValue ? 1 : 0;
                                     break;
                                 case 'float':
-                                    //Remove the last element from the avg array
-                                    avg.pop();
-                                    //Add this reading to the array
-                                    avg.unshift(reading.numberValue);
-                                    //Calculate the average of the array
-                                    var count = 0, sum = 0;
-                                    avg.forEach(function(val){
-                                        if (val !== undefined) {
-                                            sum += val;
-                                            count++;
-                                        }
-                                    });
-                                    var value = (sum/count).toFixed(1);
+                                    var value = reading.numberValue.toFixed(1);
                                     break;
                                 default:
                                     var value = reading.stringValue;

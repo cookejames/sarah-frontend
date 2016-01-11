@@ -19,6 +19,9 @@ class SensorsService {
         }
         return this.sensorModel.find({
             filter: {
+                where: {
+                    isEnabled: true
+                },
                 include: {
                     relation: "readings",
                     scope: {
