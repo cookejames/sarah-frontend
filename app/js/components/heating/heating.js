@@ -12,29 +12,31 @@
             this.groupEditting = null;
             this.waterStatus = null;
             this.heatingStatus = null;
+            this.boilerConnected = null;
         }
 
         setupMqtt() {
             this.MqttService.connect().then(() => {
                 this.MqttService.addSubscriber((message) => {
                     this.$scope.$apply(() => {
-                        this.mqttReceived(message)
+                        this.mqttReceived(message);
                     });
                 });
-                this.MqttService.subscribe('water/status');
-                this.MqttService.subscribe('heating/status');
-                this.MqttService.publish('water/status/request', '');
-                this.MqttService.publish('heating/status/request', '');
+                this.MqttService.subscribe('hvac/boiler/+/status');
+                this.MqttService.subscribe('hvac/boiler/connected');
             });
         }
 
         mqttReceived(message) {
             switch (message.destinationName) {
-                case 'water/status':
+                case 'hvac/boiler/water/status':
                     this.waterStatus = (message.payloadString === 'on') ? true : false;
                     break;
-                case 'heating/status':
+                case 'hvac/boiler/heating/status':
                     this.heatingStatus = (message.payloadString === 'on') ? true : false;
+                    break;
+                case 'hvac/boiler/connected':
+                    this.boilerConnected = (message.payloadString === 'true') ? true : false;
                     break;
             }
         }

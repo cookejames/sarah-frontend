@@ -1,8 +1,10 @@
 <div class="row">
     <div class="col-md-6 col-xs-12">
         <div class="btn-group btn-group-justified" role="group">
-            <a type="button" class="btn btn-default" ng-class="{'btn-success': status, 'btn-danger': status === false, 'btn-default': status === null}" role="button">
-                {{label}}
+            <a type="button" class="btn btn-default"
+               ng-class="{'btn-success': connected && status, 'btn-danger': connected && status === false, 'btn-default': connected && status === null, 'text-danger': !connected}" role="button">
+                <span ng-if="!connected" class="glyphicon glyphicon-flash text-danger" aria-hidden="true"></span>
+                <span ng-class="{'text-danger': !connected}">{{label}}</span>
             </a>
             <a class="btn btn-default" ng-click="showBoost = true" role="button">
                 Boost (<sr-boost-time-display time="boostStatus[type]"></sr-boost-time-display>)

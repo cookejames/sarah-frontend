@@ -110,6 +110,7 @@
             templateUrl: '/js/components/heating/heatingStatusDirective.html',
             scope: {
                 status: '=',
+                connected: '=',
                 type: '=',
                 maxBoostTime: '='
             },
