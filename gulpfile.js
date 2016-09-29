@@ -2,7 +2,6 @@ var gulp = require('gulp'),
     traceur = require('gulp-traceur'),
     concat = require('gulp-concat'),
     sourcemaps = require('gulp-sourcemaps'),
-    watch = require('gulp-watch'),
     livereload = require('gulp-livereload'),
     plumber = require('gulp-plumber'),
     del = require('del'),
@@ -77,21 +76,10 @@ gulp.task('build_config', function(){
 
 gulp.task('watch', function () {
     livereload.listen();
-    watch('./app/**/*.js', function () {
-        gulp.start('traceur');
-    });
-
-    watch('./app/**/*.less', function () {
-        gulp.start('copy_css');
-    });
-
-    watch('./app/**/*.html', function () {
-        gulp.start('copy_html');
-    });
-
-    watch('./bower_components/**/*', function () {
-        gulp.start('copy_libs');
-    });
+    gulp.watch('./app/**/*.js', ['traceur']);
+    gulp.watch('./app/**/*.less', ['copy_css']);
+    gulp.watch('./app/**/*.html', ['copy_html']);
+    gulp.watch('./bower_components/**/*', ['copy_libs']);
 });
 
 gulp.task('default', function(cb){

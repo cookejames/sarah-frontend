@@ -51,6 +51,7 @@
                 scope.minDate = new Date();
 
                 ngModelCtrl.$render = function() {
+                  console.log('render');
                     if (ngModelCtrl.$modelValue) {
                         scope.date = new Date(ngModelCtrl.$modelValue);
                     } else {
@@ -59,6 +60,7 @@
                 };
                 scope.$watch('date', function(newValue){
                     var timestamp = newValue ? newValue.getTime() : null;
+                  console.log(newValue, timestamp);
                     ngModelCtrl.$setViewValue(timestamp);
                 });
             }

@@ -1,16 +1,5 @@
 <div class="row">
     <div class="col-md-12">
-        <nvd3-line-with-focus-chart
-                data="sensors.chartData"
-                showXAxis="true"
-                showYAxis="true"
-                xAxisTickFormat="sensors.xFormat()"
-                x2AxisTickFormat="sensors.xFormat()"
-                xAxisRotateLabels="90"
-                height="500"
-                tooltips="true"
-                margin="{left:80,top:50,bottom:100,right:50}"
-                interactive="true">
-        </nvd3-line-with-focus-chart>
+        <nvd3 data="sensors.chartData" options="sensors.chartOptions"></nvd3>
     </div>
 </div>
