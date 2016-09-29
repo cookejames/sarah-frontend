@@ -149,7 +149,7 @@
             });
     }
 
-    angular.module('sarahApp.heating', ['ui.router', 'lbServices', 'sarahApp.mqtt', 'offClick', 'ui.bootstrap']).config(routerConfig);
+    angular.module('sarahApp.heating', ['ui.router', 'lbServices', 'sarahApp.mqtt', 'offClick']).config(routerConfig);
     register('sarahApp.heating').
         controller('HeatingController', HeatingController);
 })();

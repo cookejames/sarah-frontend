@@ -5,7 +5,6 @@
   "private": true,
   "dependencies": {
     "angular": "^1.4.0",
-    "angular-bootstrap": "^0.14.3",
     "angular-mocks": "^1.4.0",
     "angular-off-click": "^0.0.8",
     "angular-resource": "^1.4.0",
@@ -14,6 +13,10 @@
     "bootstrap": "^3.0",
     "paho-mqtt-js": "^1.0.1",
     "angular-animate": "^1.4.8",
-    "angular-nvd3": "^1.0.9"
+    "angular-nvd3": "^1.0.9",
+    "angular-material": "^1.1.1",
+    "roboto-fontface": "^0.5.0",
+    "angular-aria": "^1.5.8",
+    "material-design-icons": "^3.0.1"
   }
 }
